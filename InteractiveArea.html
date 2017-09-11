@@ -1,0 +1,56 @@
+<div id="interactiveArea">
+  <video
+    id="video"
+    poster="fallback.jpg"
+    controls
+    loop
+    muted
+    autoplay
+    width="800"
+    height="235">
+    <source src="video.webm" type="video/webm">
+    <audio loop id="audio" >
+      <source src="audio.ogg" type="audio/mpeg"/>
+    </audio>
+    <img src="fallback.jpg">
+  </video>
+
+  <script>
+  var interactiveArea = document.getElementById('interactiveArea');
+  var video = document.getElementById('video');
+  var audio = document.getElementById('audio');
+  var audioStarted = false;
+
+    var URL = 'https://open.spotify.com/user/spotify/playlist/37i9dQZF1DXcXBWjiVEM8R?si=GIFF9Nuj'
+    var screenHeight = screen.height || 570;
+    var screenWidth = screen.width || 520;
+    var handleClick = function(){
+      window.open(URL, '_blank','location=yes,height='+screen.height+',width='+screen.width+',scrollbars=yes,status=yes');
+    }
+    interactiveArea.onclick = handleClick;
+
+    video.onplay  = function() {
+      if(audioStarted){
+        audio.play();
+      }
+    }
+
+    video.onpause = function() {
+      audio.pause();
+    }
+
+    video.onvolumechange = function() {
+      if(!audioStarted && audio.volume == 0 && video.volume > 0){
+        audioStarted = true;
+        audio.play()
+      }
+      var volume = video.volume;
+      audio.volume = volume;
+    }
+
+    audio.onloadstart = function(){
+      audio.volume = 0;
+    }
+
+  </script>
+</div>
