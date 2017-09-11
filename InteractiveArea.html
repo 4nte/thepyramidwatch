@@ -16,7 +16,7 @@
   </video>
 
   <script>
-  var interactiveArea = document.getElementById('interactiveArea');
+
   var video = document.getElementById('video');
   var audio = document.getElementById('audio');
   var audioStarted = false;
@@ -27,7 +27,7 @@
     var handleClick = function(){
       window.open(URL, '_blank','location=yes,height='+screen.height+',width='+screen.width+',scrollbars=yes,status=yes');
     }
-    interactiveArea.onclick = handleClick;
+    video.onclick = handleClick;
 
     video.onplay  = function() {
       if(audioStarted){
