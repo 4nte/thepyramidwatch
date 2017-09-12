@@ -30,22 +30,15 @@
     video.onclick = handleClick;
 
     video.onplay  = function() {
-      if(audioStarted){
-        audio.play();
-      }
+      audio.volume = video.volume;
     }
 
     video.onpause = function() {
-      audio.pause();
+      audio.volume = 0;
     }
 
     video.onvolumechange = function() {
-      if(!audioStarted && audio.volume == 0 && video.volume > 0){
-        audioStarted = true;
-        audio.play()
-      }
-      var volume = video.volume;
-      audio.volume = volume;
+      audio.volume = video.volume;
     }
 
     audio.onloadstart = function(){
