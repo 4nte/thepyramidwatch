@@ -27,17 +27,22 @@
     var handleClick = function(){
       window.open(URL, '_blank','location=yes,height='+screen.height+',width='+screen.width+',scrollbars=yes,status=yes');
     }
+    video.volume = 0;
+    audio.volume = 0;
     video.onclick = handleClick;
 
     video.onplay  = function() {
-      audio.volume = video.volume;
+      audio.currentTime= video.currentTime;
+      audio.play()
+
     }
 
     video.onpause = function() {
-      audio.volume = 0;
+      audio.pause()
     }
 
     video.onvolumechange = function() {
+      console.log('video volume change', video.volume);
       audio.volume = video.volume;
     }
 
